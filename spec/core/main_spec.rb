@@ -12,6 +12,10 @@ describe 'Main' do
       sut.go_to_homepage
     end
 
+    after :all do
+      sut.close_browser
+    end
+
     it "should show a headline" do
       sut.headline.should be_present
     end
@@ -56,14 +60,14 @@ describe 'Main' do
 
     end
 
-    context 'Hover over subscribe primary nav tab' do
+    context 'Hover over another primary nav tab' do
 
       before :all do
-        sut.hover_over_subscribe_tab
+        sut.hover_over_video_tab
       end
 
-      it "should display content for the subscribe tab section" do
-        sut.subscribe_tab_content.should be_present
+      it "should display content for the video tab section" do
+        sut.video_tab_content.should be_present
       end
 
     end

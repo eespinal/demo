@@ -8,6 +8,10 @@ module Demo
       #@browser = Watir::Browser.new :ff
     end
 
+    def close_browser
+      browser.close
+    end
+
     def go_to_homepage
       browser.goto 'www.wired.com'
     end
@@ -22,6 +26,10 @@ module Demo
 
     def hover_over_science_tab
       science_tab.when_present.click
+    end
+
+    def hover_over_video_tab
+      video_tab.when_present.click
     end
 
     def hover_over_subscribe_tab
@@ -120,8 +128,11 @@ module Demo
       science_tab.ul(:class => 'subnav')
     end
 
+    def video_tab_content
+      video_tab.ul(:class => 'subnav')
+    end
+
     def subscribe_tab_content
-      hover_over_subscribe_tab
       subscription_tab.div(:id => 'AMS_WIR_GLOBAL_NAVBAR_ROLLOVER')
     end
 
@@ -131,6 +142,10 @@ module Demo
 
     def science_tab
       primaty_tabs.li(:class => 'science')
+    end
+
+    def video_tab
+      primaty_tabs.li(:class => 'video')
     end
 
     def subscription_tab
