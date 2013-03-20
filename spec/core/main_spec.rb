@@ -113,6 +113,107 @@ describe 'Main' do
 
     end
 
+    context 'Go to search' do
+
+      before :all do
+        sut.go_to_search_page
+      end
+
+      it "should load the search page" do
+        sut.search_results_div.should be_present
+      end
+
+    end
+
+    context 'Search for hello' do
+
+      before :all do
+        sut.search_for('hello')
+      end
+
+      it "should return results for the query" do
+        sut.search_results_list.should be_present
+      end
+
+    end
+
+    context 'Return to homepage' do
+
+      before :all do
+        sut.click_on_wired_logo
+      end
+
+      it "should go to the homepage" do
+        sut.current_url.should == 'http://www.wired.com/'
+      end
+
+    end
+
+    context 'Go to first headline' do
+
+      before :all do
+        sut.go_to_first_headline
+      end
+
+      it "should go to that headline page" do
+        sut.first_headline_visited?.should be_true
+      end
+
+    end
+
+    context 'Return to homepage' do
+
+      before :all do
+        sut.click_on_wired_logo
+      end
+
+      it "should go to the homepage" do
+        sut.current_url.should == 'http://www.wired.com/'
+      end
+
+    end
+
+    context 'Navigate to Contact Us' do
+
+      before :all do
+        sut.scroll_down(1900)
+        sut.click_on_contact_us
+      end
+
+      it "should load the contact us page" do
+        sut.current_url.should == 'http://www.wired.com/about/feedback/'
+      end
+
+    end
+
+    context 'Navigate to Login/Register' do
+
+      before :all do
+        sut.click_on_wired_logo
+        sut.scroll_down(1900)
+        sut.click_on_login_register
+      end
+
+      it "should load the login/register page" do
+        sut.current_url.should == 'https://secure.wired.com/user/login'
+      end
+
+    end
+
+    context 'Navigate to Newsletter' do
+
+      before :all do
+        sut.click_on_wired_logo
+        sut.scroll_down(1900)
+        sut.click_on_newsletter
+      end
+
+      it "should load the newsletter page" do
+        sut.current_url.should == 'http://www.wired.com/services/newsletters'
+      end
+
+    end
+
   end
 
 end
